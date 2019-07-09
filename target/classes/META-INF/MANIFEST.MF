@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Class-Path: bcprov-jdk15on-1.57.jar smack-im-4.3.3.jar smack-extension
+ s-4.3.3.jar commons-lang3-3.8.1.jar jxmpp-util-cache-0.6.3.jar smack-
+ core-4.3.3.jar commons-beanutils-1.9.3.jar commons-collections-3.2.2.
+ jar smack-tcp-4.3.3.jar smack-java7-4.3.3.jar minidns-core-0.3.4.jar 
+ commons-collections4-4.2.jar smack-experimental-4.3.3.jar xpp3-1.1.4c
+ .jar smack-resolver-javax-4.3.3.jar smack-sasl-javax-4.3.3.jar smack-
+ debug-4.3.3.jar commons-logging-1.2.jar jxmpp-core-0.6.3.jar opencsv-
+ 4.6.jar jxmpp-jid-0.6.3.jar commons-text-1.3.jar
+Main-Class: App
+
