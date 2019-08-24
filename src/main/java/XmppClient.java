@@ -2,8 +2,8 @@ import org.jivesoftware.smack.AbstractXMPPConnection;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.chat2.Chat;
 import org.jivesoftware.smack.chat2.ChatManager;
+import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
@@ -38,17 +38,13 @@ public class XmppClient {
         configuration = XMPPTCPConnectionConfiguration.builder()
                 .setXmppDomain(domain)
                 .setHost(domain)
-                .enableDefaultDebugger()
+                //.enableDefaultDebugger()
                 .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
                 .build();
 
         connection = new XMPPTCPConnection(configuration);
         connection.connect();
         System.out.println("INFO: Conectandose a " + connection.getXMPPServiceDomain().toString());
-    }
-
-    public String getOwner() {
-        return owner;
     }
 
     public XMPPTCPConnection getConnection() {
@@ -68,7 +64,7 @@ public class XmppClient {
 
         roster = Roster.getInstanceFor(connection);
         chatManager = ChatManager.getInstanceFor(connection);
-        roster.setSubscriptionMode(Roster.SubscriptionMode.accept_all);
+        //roster.setSubscriptionMode(Roster.SubscriptionMode.accept_all);
 
     }
 
@@ -82,6 +78,7 @@ public class XmppClient {
     public void subscribeOwner(BareJid owner) throws SmackException.NotLoggedInException, InterruptedException, SmackException.NotConnectedException {
         roster.sendSubscriptionRequest(owner);
         this.owner = owner.toString();
+        roster.setSubscriptionMode(Roster.SubscriptionMode.manual);
     }
 
     public void subscribeRequest(BareJid jid) throws SmackException.NotLoggedInException, InterruptedException, SmackException.NotConnectedException {
@@ -95,11 +92,10 @@ public class XmppClient {
         return this.chatManager;
     }
 
-    public void transferFile(Jid jid){
+    public void transferFile(Jid jid) throws XmppStringprepException, SmackException, InterruptedException {
         FileTransferManager fileTransferManager = FileTransferManager.getInstanceFor(connection);
         File file = new File(System.getProperty("user.dir") + "/log.csv");
 
-        try {
             EntityFullJid entityFullJid = JidCreate.entityFullFrom(jid);
             OutgoingFileTransfer transfer = fileTransferManager.createOutgoingFileTransfer(entityFullJid);
             transfer.sendFile(file, null);
@@ -115,13 +111,9 @@ public class XmppClient {
             }
 
             System.out.println("INFO: Archivo transferido");
-        } catch (XmppStringprepException e) {
-            e.printStackTrace();
-        } catch (SmackException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-    }
 
+        public void sendPresence(){
+            new Presence(Presence.Type.unavailable);
+        }
 }

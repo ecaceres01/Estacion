@@ -14,18 +14,21 @@ public class ReadCSV {
                 .withSeparator(';')
                 .build();
 
-        Reader reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir") + "/last.txt"));
+        Reader reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir") + "/last.csv"));
 
         CSVReader csvReader = new CSVReaderBuilder(reader).withCSVParser(parser).build();
 
         String[] record;
         while ((record = csvReader.readNext()) != null){
-            System.out.println("TimeStamp: " + record[0]);
+            System.out.println("DateTime: " + record[0]);
             System.out.println("Temperatura: " + record[1] + " °C");
             System.out.println("Humedad ambiental: " + record[2] + " %");
             System.out.println("Velocidad viento: " + record[3] + " Km/h");
             System.out.println("Direccion viento: " + record[4]);
             System.out.println("Presion atmosferica: " + record[5] + " Pa");
+            System.out.println("Lluvia caida: " + record[6] + " mm");
+
+
         }
     }
 
@@ -55,7 +58,7 @@ public class ReadCSV {
                 .withSeparator(';')
                 .build();
 
-        Reader reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir") + "/last.txt"));
+        Reader reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir") + "/last.csv"));
 
         CSVReader csvReader = new CSVReaderBuilder(reader).withCSVParser(parser).build();
 

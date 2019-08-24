@@ -46,7 +46,7 @@ public class PropertiesManager {
         properties.setProperty("dominio", domain);
         properties.setProperty("usuario", user);
         properties.setProperty("password", password);
-        properties.store(outputStream, "CONFIGURACIÓN DE REGISTRO");
+        properties.store(outputStream, "CONFIGURACION DE REGISTRO");
 
         closeOutputstream();
     }
@@ -57,12 +57,12 @@ public class PropertiesManager {
         }
     }
 
-    public void loadOwner(String owner) throws IOException {
+    public void setOwner(String owner) throws IOException {
         this.owner = owner;
         System.out.println("INFO: Seteando a owner...");
         outputStream = new FileOutputStream(System.getProperty("user.dir") + "/config.properties");
         properties.setProperty("owner", owner);
-        properties.store(outputStream, "CONFIGURACIÓN DE REGISTRO CON DUEÑO");
+        properties.store(outputStream, "CONFIGURACION DE REGISTRO CON OWNER");
         closeOutputstream();
     }
 
@@ -70,9 +70,9 @@ public class PropertiesManager {
         inputStream = new FileInputStream(System.getProperty("user.dir") + "/config.properties");
         properties.clear();
         properties.load(inputStream);
-        owner = properties.getProperty("owner");
+        this.owner = properties.getProperty("owner");
         inputStream.close();
-        if (owner == null){
+        if (this.owner == null){
             System.out.println("INFO: Owner no asignado");
             return false;
         } else {
@@ -89,21 +89,21 @@ public class PropertiesManager {
         if (whiteList == null){
             whiteList = jid.concat(";");
             properties.setProperty("listaBlanca", whiteList);
-            properties.store(outputStream, "CONFIGURACIÓN DE REGISTRO CON DUEÑO Y LISTA BLANCA");
+            properties.store(outputStream, "CONFIGURACION DE REGISTRO CON OWNER Y LISTA BLANCA");
 
         } else {
             String[] helper = whiteList.split(";");
             for (int i=0; i < helper.length; i++){
                 if (helper[i].equals(jid)){
                     properties.setProperty("listaBlanca", whiteList);
-                    properties.store(outputStream, "CONFIGURACIÓN DE REGISTRO CON DUEÑO Y LISTA BLANCA");
+                    properties.store(outputStream, "CONFIGURACION DE REGISTRO CON OWNER Y LISTA BLANCA");
                     closeOutputstream();
                     throw new Exception("ERROR: JID " + jid + " ya ingresada en la lista blanca");
                 }
             }
             whiteList = whiteList.concat(jid + ";");
             properties.setProperty("listaBlanca", whiteList);
-            properties.store(outputStream, "CONFIGURACIÓN DE REGISTRO CON DUEÑO Y LISTA BLANCA");
+            properties.store(outputStream, "CONFIGURACION DE REGISTRO CON OWNER Y LISTA BLANCA");
         }
 
         System.out.println("INFO: Agregando JID: " + jid + " a la lista blanca");
