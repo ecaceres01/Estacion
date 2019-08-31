@@ -1,4 +1,5 @@
 import org.jivesoftware.smack.SmackException;
+import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.chat2.Chat;
 import org.jivesoftware.smack.chat2.IncomingChatMessageListener;
 import org.jivesoftware.smack.packet.Message;
@@ -22,63 +23,60 @@ public class App {
 
     public static void main(String[] args) {
         //datos en duro para la conexión al servidor xmpp
-        String domain   = "10.40.5.9";
-        String user     = "estacion";
+        String domain = "10.40.5.9";
+        String user = "estacion";
         String password = "estacion";
 
-            //INICIO conexión y generación de cuenta en XMPP
-            if (!file.exists()){
-                try {
-                    xmppClient = new XmppClient(domain, user, password);
+        //INICIO conexión y generación de cuenta en XMPP
+        if (!file.exists()) {
+            try {
+                xmppClient = new XmppClient(domain, user, password);
 
-                    if (xmppClient.getConnection().isConnected()){
-                        xmppClient.generateAccount();
-                        propertiesManager = new PropertiesManager(domain, user, password);
-                    }
-
-                } catch (Exception e) {
-                    file.delete();
-                    System.out.println("ERROR: No se pudo generar la conexión al servidor");
-                    System.exit(-1); //matando el servicio
-                    e.printStackTrace();
+                if (xmppClient.getConnection().isConnected()) {
+                    xmppClient.generateAccount();
+                    propertiesManager = new PropertiesManager(domain, user, password);
                 }
+
+            } catch (Exception e) {
+                file.delete();
+                System.out.println("ERROR: No se pudo generar la conexión al servidor");
+                System.exit(-1); //matando el servicio
+                e.printStackTrace();
             }
-            //FIN conexión y generación de cuenta en XMPP
+        }
+        //FIN conexión y generación de cuenta en XMPP
 
-            //INICIO carga de configuración e login de cuenta en servidor XMPP
-            if (file.exists() && !file.isDirectory()){
-                try {
-                    if (xmppClient == null){
-                        propertiesManager = new PropertiesManager();
-                        xmppClient = new XmppClient(
-                                propertiesManager.getDomain(),
-                                propertiesManager.getUser(),
-                                propertiesManager.getPassword()
-                        );
-                    }
-
-                    xmppClient.logInAccount("test");
-
-                    checkOwner = propertiesManager.checkOwner();
-
-                    if (checkOwner){
-                        xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.manual);
-                        System.out.println("INFO: subcription mode manual");
-                    } else {
-                        xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.accept_all);
-                        System.out.println("INFO: subcription mode accept all");
-                    }
-
-                    //xmppClient.sendPresence();
-
-                } catch (Exception e) {
-                    System.out.println("ERROR: No se pudo logear en el servidor");
-                    System.exit(-1); //matando el servicio
-                    e.printStackTrace();
+        //INICIO carga de configuración e login de cuenta en servidor XMPP
+        if (file.exists() && !file.isDirectory()) {
+            try {
+                if (xmppClient == null) {
+                    propertiesManager = new PropertiesManager();
+                    xmppClient = new XmppClient(
+                            propertiesManager.getDomain(),
+                            propertiesManager.getUser(),
+                            propertiesManager.getPassword()
+                    );
                 }
-            }
-            //FIN carga de configuración e login de cuenta en servidor XMPP
 
+                xmppClient.logInAccount("test");
+
+                checkOwner = propertiesManager.checkOwner();
+
+                if (checkOwner) {
+                    xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.manual);
+                    System.out.println("INFO: subcription mode manual");
+                } else {
+                    xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.accept_all);
+                    System.out.println("INFO: subcription mode accept all");
+                }
+
+            } catch (Exception e) {
+                System.out.println("ERROR: No se pudo logear en el servidor");
+                System.exit(-1); //matando el servicio
+                e.printStackTrace();
+            }
+        }
+        //FIN carga de configuración e login de cuenta en servidor XMPP
 
 
         //INICIO Listener para subscripción de cuentas
@@ -87,22 +85,26 @@ public class App {
                 @Override
                 public void entriesAdded(Collection<Jid> addresses) {
                     System.out.println("INFO: El jid " + addresses + " a sido agregado al roster");
-                    if (!checkOwner){
-                        for (Jid recorredor: addresses){
+                    if (!checkOwner) {
+                        for (Jid recorredor : addresses) {
                             try {
                                 xmppClient.subscribeOwner(recorredor.asBareJid());
                                 System.out.println("INFO: El jid " + addresses + "está siendo configurado como OWNER");
                                 System.out.println("INFO: " + recorredor.toString());
                                 propertiesManager.setOwner(recorredor.toString());
+
+                                if (checkOwner) {
+                                    xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.manual);
+                                }
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 System.exit(-1); //matando el servicio
                             }
                         }
                     } else {
-                        for (Jid recorredor: addresses){
+                        for (Jid recorredor : addresses) {
                             boolean checkWhiteList = propertiesManager.checkWhiteList(recorredor.toString());
-                            if (checkWhiteList){
+                            if (checkWhiteList) {
                                 try {
                                     xmppClient.subscribeRequest(recorredor.asBareJid());
                                 } catch (Exception e) {
@@ -146,10 +148,10 @@ public class App {
                 public void newIncomingMessage(EntityBareJid from, Message message, Chat chat) {
                     System.out.println("<IN: " + message.getBody());
                     System.out.println("<FROM: " + from);
-                    //System.out.println(propertiesManager.getOwner());
+
                     Message respuesta;
 
-                    if (message.getBody().equalsIgnoreCase("datos")){
+                    if (message.getBody().equalsIgnoreCase("datos")) {
 
                         ReadCSV readCSV = new ReadCSV();
                         String[] lastData = null;
@@ -163,16 +165,16 @@ public class App {
 
                         respuesta = new Message(message.getTo(),
                                 "DateTime: " + lastData[0] +
-                                "\nDirección del viento: " + lastData[1] +
-                                "\nVelocidad del viento: " + lastData[2] + " Km/h" +
-                                "\nLluvia acumulada: " + lastData[3] + " mm" +
-                                "\nPresión atmosférica: " + lastData[4] + " hPa" +
-                                "\nHumedad ambiental: " + lastData[5] + " %" +
-                                "\nTemperatura: " + lastData[6] + " °C" +
-                                "\nConcentración de CO: " + lastData[10] +
-                                "\nConcentración de SO2: " + lastData[11] +
-                                "\nConcentración de NO2: " + lastData[12]
-                                );
+                                        "\nDirección del viento: " + lastData[1] +
+                                        "\nVelocidad del viento: " + lastData[2] + " Km/h" +
+                                        "\nLluvia acumulada: " + lastData[3] + " mm" +
+                                        "\nPresión atmosférica: " + lastData[4] + " hPa" +
+                                        "\nHumedad ambiental: " + lastData[5] + " %" +
+                                        "\nTemperatura: " + lastData[6] + " °C" +
+                                        "\nConcentración de CO: " + lastData[10] +
+                                        "\nConcentración de SO2: " + lastData[11] +
+                                        "\nConcentración de NO2: " + lastData[12]
+                        );
 
                         respuesta.setType(Message.Type.chat);
                         System.out.println(">OUT: " + respuesta.toString());
@@ -183,7 +185,7 @@ public class App {
                             e.printStackTrace();
                             System.exit(-1); //matando el servicio
                         }
-                    } else if (message.getBody().equalsIgnoreCase("log")){
+                    } else if (message.getBody().equalsIgnoreCase("log")) {
                         try {
                             xmppClient.transferFile(message.getFrom());
                             System.out.println("INFO: tratando de enviar archivo a" + message.getFrom());
@@ -195,8 +197,8 @@ public class App {
 
                     }
 
-                    if (from.toString().equals(propertiesManager.getOwner())){
-                        if (message.getBody().startsWith("AGREGAR:")){
+                    if (from.toString().equals(propertiesManager.getOwner())) {
+                        if (message.getBody().startsWith("AGREGAR:")) {
                             String[] texto = message.getBody().split(":");
                             String jid = texto[1].trim();
                             try {
@@ -206,25 +208,38 @@ public class App {
                                 e.printStackTrace();
                                 System.exit(-1); //matando el servicio
                             }
+
+                            respuesta = new Message(message.getTo(),
+                                    "el usuario " + jid + "ha sido agregado a tu lista blanca con éxito");
+
+                            respuesta.setType(Message.Type.chat);
+
+                            try {
+                                chat.send(respuesta);
+                            } catch (Exception e) {
+                                System.out.println("ERROR: No se pudo enviar respuesat de whitelist");
+                                e.printStackTrace();
+                            }
                         }
                     }
 
                 }
             });
+
         } catch (Exception e) {
             System.out.println("ERROR: en la wea grande");
             e.printStackTrace();
             System.exit(-1); //matando el servicio
         }
 
-        if (checkOwner){
+        if (checkOwner) {
             try {
                 xmppClient.getRoster().addSubscribeListener(new SubscribeListener() {
                     @Override
                     public SubscribeAnswer processSubscribe(Jid from, Presence subscribeRequest) {
                         SubscribeAnswer subscribeAnswer;
                         boolean checkWhiteList = propertiesManager.checkWhiteList(from.toString());
-                        if (checkWhiteList){
+                        if (checkWhiteList) {
                             subscribeAnswer = SubscribeAnswer.Approve;
                         } else {
                             subscribeAnswer = SubscribeAnswer.Deny;
@@ -238,25 +253,13 @@ public class App {
                 System.exit(-1); //matando el servicio
             }
         }
-
         //FIN Listener de chat
 
-        /*
-        while (xmppClient.getConnection().isConnected()){
-
-        }
-
-        if (!xmppClient.getConnection().isConnected()){
-            System.exit(-1);
-        }
-        */
-
         while (true) {
-            if (!xmppClient.getConnection().isConnected()) {
-                System.out.println("MURIO LA WEA");
+            if (!xmppClient.getConnection().isConnected() || !xmppClient.getConnection().isAuthenticated()) {
+                System.out.println("ERROR: Se me jue la wea");
                 break;
             }
         }
-        System.exit(-2);
     }
 }

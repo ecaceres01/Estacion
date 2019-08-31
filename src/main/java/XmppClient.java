@@ -1,9 +1,5 @@
-import org.jivesoftware.smack.AbstractXMPPConnection;
-import org.jivesoftware.smack.ConnectionConfiguration;
-import org.jivesoftware.smack.SmackException;
-import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.*;
 import org.jivesoftware.smack.chat2.ChatManager;
-import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
@@ -11,6 +7,7 @@ import org.jivesoftware.smackx.filetransfer.FileTransfer;
 import org.jivesoftware.smackx.filetransfer.FileTransferManager;
 import org.jivesoftware.smackx.filetransfer.OutgoingFileTransfer;
 import org.jivesoftware.smackx.iqregister.AccountManager;
+import org.jivesoftware.smackx.ping.PingManager;
 import org.jxmpp.jid.*;
 import org.jxmpp.jid.impl.JidCreate;
 import org.jxmpp.jid.parts.Localpart;
@@ -28,6 +25,7 @@ public class XmppClient {
     private String domain, user, password, owner;
     private Roster roster = null;
     private ChatManager chatManager = null;
+    private PingManager pingManager = null;
 
     public XmppClient(String domain, String user, String password) throws IOException, InterruptedException, XMPPException, SmackException {
 
@@ -62,10 +60,10 @@ public class XmppClient {
         connection.login(this.user, this.password, Resourcepart.from(resource));
         System.out.println("INFO: Logeando en el servidor " + connection.getXMPPServiceDomain().toString() + " como usuario: " + connection.getUser());
 
-        roster = Roster.getInstanceFor(connection);
-        chatManager = ChatManager.getInstanceFor(connection);
-        //roster.setSubscriptionMode(Roster.SubscriptionMode.accept_all);
-
+        this.roster = Roster.getInstanceFor(connection);
+        this.chatManager = ChatManager.getInstanceFor(connection);
+        this.pingManager = PingManager.getInstanceFor(connection);
+        pingManager.setPingInterval(300);
     }
 
     public Roster getRoster() throws Exception {
@@ -86,7 +84,7 @@ public class XmppClient {
     }
 
     public ChatManager getChatmanager() throws Exception {
-        if (this.chatManager == null){
+        if (this.chatManager == null) {
             throw new Exception("No hay chatmanager creado");
         }
         return this.chatManager;
@@ -96,24 +94,21 @@ public class XmppClient {
         FileTransferManager fileTransferManager = FileTransferManager.getInstanceFor(connection);
         File file = new File(System.getProperty("user.dir") + "/log.csv");
 
-            EntityFullJid entityFullJid = JidCreate.entityFullFrom(jid);
-            OutgoingFileTransfer transfer = fileTransferManager.createOutgoingFileTransfer(entityFullJid);
-            transfer.sendFile(file, null);
+        EntityFullJid entityFullJid = JidCreate.entityFullFrom(jid);
+        OutgoingFileTransfer transfer = fileTransferManager.createOutgoingFileTransfer(entityFullJid);
+        transfer.sendFile(file, null);
 
-            while (!transfer.isDone()) {
-                if (transfer.getStatus().equals(FileTransfer.Status.error)) {
-                    System.out.println("ERROR: " + transfer.getError());
-                } else {
-                    System.out.println(transfer.getStatus());
-                    System.out.println(transfer.getProgress());
-                }
-                sleep(10000);
+        while (!transfer.isDone()) {
+            if (transfer.getStatus().equals(FileTransfer.Status.error)) {
+                System.out.println("ERROR: " + transfer.getError());
+            } else {
+                System.out.println(transfer.getStatus());
+                System.out.println(transfer.getProgress());
             }
-
-            System.out.println("INFO: Archivo transferido");
+            sleep(10000);
         }
 
-        public void sendPresence(){
-            new Presence(Presence.Type.unavailable);
-        }
+        System.out.println("INFO: Archivo transferido");
+    }
+
 }

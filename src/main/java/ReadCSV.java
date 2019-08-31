@@ -32,27 +32,6 @@ public class ReadCSV {
         }
     }
 
-    /*
-    public void readData() throws IOException {
-        CSVParser parser = new CSVParserBuilder()
-                .withSeparator(';')
-                .build();
-
-        Reader reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir") + "/last.txt"));
-
-        CSVReader csvReader = new CSVReaderBuilder(reader).withCSVParser(parser).build();
-
-        List<List<String>> records = new ArrayList<List<String>>();
-        String[] values = null;
-        while ((values = csvReader.readNext()) != null){
-            records.add(Arrays.asList(values));
-        }
-
-        System.out.println(records);
-    }
-
-     */
-
     public String[] readData() throws Exception {
         CSVParser parser = new CSVParserBuilder()
                 .withSeparator(';')

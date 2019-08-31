@@ -7,23 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a385c765-c52b-415d-b6ed-4c4b02877348" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Estacion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/last.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/last.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Estacion/jxmpp-core-0.6.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Estacion/jxmpp-jid-0.6.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Estacion/jxmpp-util-cache-0.6.3.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PropertiesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PropertiesManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ReadCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ReadCSV.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/XmppClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/XmppClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PropertiesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PropertiesManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ReadCSV.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReadCSV.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/XmppClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/XmppClient.class" afterDir="false" />
     </list>
@@ -145,17 +140,21 @@
       <workItem from="1566610668326" duration="984000" />
       <workItem from="1566612486616" duration="614000" />
       <workItem from="1566648776612" duration="1270000" />
+      <workItem from="1566654143286" duration="7882000" />
+      <workItem from="1566662910109" duration="534000" />
+      <workItem from="1566663682799" duration="491000" />
+      <workItem from="1566824179801" duration="111000" />
+      <workItem from="1566824423517" duration="1136000" />
+      <workItem from="1566832412924" duration="5892000" />
+      <workItem from="1566838981097" duration="598000" />
+      <workItem from="1566840777769" duration="7016000" />
+      <workItem from="1566938091007" duration="4069000" />
+      <workItem from="1567109845366" duration="1744000" />
+      <workItem from="1567112127741" duration="7332000" />
+      <workItem from="1567120645597" duration="1244000" />
+      <workItem from="1567263910715" duration="856000" />
     </task>
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -175,79 +174,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>Estacion:jar</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Estacion</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
