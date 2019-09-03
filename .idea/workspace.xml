@@ -6,14 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a385c765-c52b-415d-b6ed-4c4b02877348" name="Default Changelist" comment="Refactoring de código, primera aproximación a espera de testeo">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CsvManager.java" afterDir="false" />
+    <list default="true" id="a385c765-c52b-415d-b6ed-4c4b02877348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CsvManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CsvManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PropertiesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PropertiesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ReadCSV.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/XmppClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/XmppClient.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -153,8 +150,17 @@
       <workItem from="1567120645597" duration="1244000" />
       <workItem from="1567263910715" duration="856000" />
       <workItem from="1567267371947" duration="511000" />
-      <workItem from="1567292558653" duration="8276000" />
+      <workItem from="1567292558653" duration="8590000" />
+      <workItem from="1567465201899" duration="9606000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactoring de código, primera aproximación a espera de testeo">
+      <created>1567302110024</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567302110024</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

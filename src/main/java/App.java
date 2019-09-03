@@ -1,4 +1,5 @@
 import org.jivesoftware.smack.ConnectionListener;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -7,7 +8,6 @@ public class App {
     private static File file = new File(System.getProperty("user.dir") + "/config.properties"); //instancia de archivo de propiedades.
     private static XmppClient xmppClient = null; //instancia de la clase de métodos XMPP.
     private static PropertiesManager propertiesManager = null; //instancia de la clase de manejo de propiedades.
-    private static boolean checkOwner = false;
 
     public static void main(String[] args) {
         //datos en duro para la conexión al servidor XMPP
@@ -15,7 +15,7 @@ public class App {
         String user = "estacion";
         String password = "estacion";
 
-        if (!file.exists()){
+        if (!file.exists()) {
             try {
                 xmppClient = new XmppClient(domain, user, password);
                 propertiesManager = new PropertiesManager(domain, user, password);
@@ -57,10 +57,17 @@ public class App {
             }
         }
 
-        checkOwner = propertiesManager.checkOwner();
-        xmppClient.connectionListener(checkOwner);
+        xmppClient.connectionListener(propertiesManager);
+        xmppClient.rosterListener(propertiesManager);
+        xmppClient.incomingChatMessageListener(propertiesManager);
 
+        if (propertiesManager.checkOwner()) {
+            xmppClient.subscribeListener(propertiesManager);
+        }
 
+        while (true) {
+
+        }
 
     }
 }
