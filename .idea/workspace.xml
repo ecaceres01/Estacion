@@ -9,9 +9,7 @@
     <list default="true" id="a385c765-c52b-415d-b6ed-4c4b02877348" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CsvManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CsvManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PropertiesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PropertiesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/XmppClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/XmppClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ClientManager/XmppClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClientManager/XmppClient.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +49,13 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1PfFaycATHMzhDTii2xzb2JzoFK" />
   <component name="ProjectLevelVcsManager">
@@ -152,6 +157,8 @@
       <workItem from="1567267371947" duration="511000" />
       <workItem from="1567292558653" duration="8590000" />
       <workItem from="1567465201899" duration="9606000" />
+      <workItem from="1567723149329" duration="223000" />
+      <workItem from="1567723652981" duration="139000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring de código, primera aproximación a espera de testeo">
       <created>1567302110024</created>

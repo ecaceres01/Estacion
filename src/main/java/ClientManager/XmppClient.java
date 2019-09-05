@@ -78,7 +78,7 @@ public class XmppClient {
         System.out.println("INFO: Intervalo del ping de " + (pingManager.getPingInterval())/60 + " minutos");
     }
 
-    private void generateAccount() throws IOException, XMPPException, SmackException, InterruptedException {
+    public void generateAccount() throws IOException, XMPPException, SmackException, InterruptedException {
         AccountManager accountManager = AccountManager.getInstance(connection);
         accountManager.sensitiveOperationOverInsecureConnection(true);
         accountManager.createAccount(Localpart.from(user), password);
