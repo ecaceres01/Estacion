@@ -1,16 +1,18 @@
-package ClientManager;
+package Organizador;
 
+import Organizador.Excepciones.CsvException;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class CsvManager {
-    public String[] readData() throws Exception {
+    String[] readData() throws IOException, CsvException {
         CSVParser parser = new CSVParserBuilder()
                 .withSeparator(';')
                 .build();
@@ -24,7 +26,8 @@ public class CsvManager {
         if ((line = csvReader.readNext()) != null){
             return line;
         } else {
-            throw new Exception("ERROR: no se puede leer la data");
+            throw new CsvException("No se lee el archivo last.csv");
         }
     }
+
 }

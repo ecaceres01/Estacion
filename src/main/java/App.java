@@ -1,29 +1,34 @@
-import ClientManager.*;
-
+import Organizador.Excepciones.RosterException;
+import Organizador.ListenerManager;
+import Organizador.PropertiesManager;
+import Organizador.XmppClient;
 import org.jivesoftware.smack.roster.Roster;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 public class App {
     private static File file = new File(System.getProperty("user.dir") + "/config.properties");
     private static XmppClient xmppClient = null;
     private static PropertiesManager propertiesManager = null;
-    static boolean checkOwner = false;
-
+    private static boolean checkOwner;
 
     public static void main(String[] args) {
-        String domain = "10.40.5.9";
-        String user = "unab";
-        String password = "unab";
+        String domain = "binarylamp.cl";
+        String user = "unab2019";
+        String password = UUID.randomUUID().toString().replace("-", "");
 
         if (!file.exists()) {
             try {
                 xmppClient = new XmppClient(domain, user, password);
                 propertiesManager = new PropertiesManager(domain, user, password);
-                xmppClient.InitialConnection();
+
+                xmppClient.initialConnection();
             } catch (Exception e) {
+                System.out.println("ERROR: No se pudo realizar la conexión con el servidor");
                 file.delete();
-                System.out.println("ERROR: No se concretar la conexión inicial al servidor XMPP");
+                System.out.println("Eliminando archivo de configuración");
                 e.printStackTrace();
                 System.exit(-1);
             }
@@ -34,12 +39,13 @@ public class App {
                     xmppClient = new XmppClient(
                             propertiesManager.getDomain(),
                             propertiesManager.getUser(),
-                            propertiesManager.getUser()
+                            propertiesManager.getPassword()
                     );
-                    xmppClient.NormalConnection();
+
+                    xmppClient.normalConnection();
                 }
             } catch (Exception e) {
-                System.out.println("ERROR: No se logró realizar la conexión al servidor");
+                System.out.println("ERROR: No se pudo realizar la conexión con el servidor");
                 e.printStackTrace();
                 System.exit(-1);
             }
@@ -48,29 +54,35 @@ public class App {
         try {
             checkOwner = propertiesManager.checkOwner();
 
-            if (checkOwner) {
-                xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.manual);
-                System.out.println("INFO: Subcription mode MANUAL");
-            } else {
+            if (!checkOwner) {
                 xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.accept_all);
-                System.out.println("INFO: Subcription mode ACCEPT ALL");
+                System.out.println("INFO: Owner no seteado. Subcription mode ACCEPT ALL");
+            } else {
+                xmppClient.getRoster().setSubscriptionMode(Roster.SubscriptionMode.manual);
+                xmppClient.setSubscribeListener();
+                System.out.println("INFO: Owner asignado. Subcription mode MANUAL");
             }
-        } catch (Exception e) {
-            System.out.println("ERROR: No se logró realizar el chechkeo del owner");
+        } catch (RosterException | IOException e) {
+            System.out.println("ERROR: Roster no creado");
+            System.exit(-2);
             e.printStackTrace();
-            System.exit(-1);
         }
 
         new ListenerManager(xmppClient, propertiesManager);
 
         try {
             xmppClient.setRosterListener();
-        } catch (Exception e) {
-            System.out.println("ERROR: Rosterlistener no implementado");
+            xmppClient.setIncomingChatMessageListener();
+            xmppClient.setPresenceListener();
+            xmppClient.setConnectionListener();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        xmppClient.setIncomingChatMessageListener();
-        xmppClient.setSubscribeListener();
 
+        while (xmppClient.getConnection().isAuthenticated()) {
+
+        }
+
+        System.exit(0);
     }
 }
