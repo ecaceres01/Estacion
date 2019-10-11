@@ -163,13 +163,12 @@ public class ListenerManager {
                                     "\nVelocidad del viento: " + lastData[2] + " Km/h" +
                                     "\nPrecipitacion en la última hora: " + lastData[3] + " mm" +
                                     "\nPresión atmosférica: " + lastData[4] + " kPa" +
-                                    "\nAltitud: " + lastData[5] + " m" +
-                                    "\nHumedad ambiental: " + lastData[7] + " %" +
-                                    "\nTemperatura: " + lastData[8] + " °C" +
-                                    "\nCO: " + lastData[12] + " ug/m3" +
-                                    "\nSO2: " + lastData[13] + " ug/m3" +
-                                    "\nNO2: " + lastData[14] + " ug/m3" +
-                                    "\nPM2,5: " + lastData[15] + " ug/m3"
+                                    "\nHumedad ambiental: " + lastData[6] + " %" +
+                                    "\nTemperatura: " + lastData[7] + " °C" +
+                                    "\nCO: " + lastData[11] + " ug/m3" +
+                                    "\nSO2: " + lastData[12] + " ug/m3" +
+                                    "\nNO2: " + lastData[13] + " ug/m3" +
+                                    "\nPM2,5: " + lastData[14] + " ug/m3"
                     );
 
                     respuesta.setType(Message.Type.chat);
@@ -234,17 +233,7 @@ public class ListenerManager {
         return new PingFailedListener() {
             @Override
             public void pingFailed() {
-                try {
-                    xmppClient.normalConnection();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (XMPPException e) {
-                    e.printStackTrace();
-                } catch (SmackException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                System.exit(-5);
             }
         };
     }

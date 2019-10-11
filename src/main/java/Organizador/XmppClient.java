@@ -11,8 +11,6 @@ import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 import org.jivesoftware.smackx.iqregister.AccountManager;
 import org.jivesoftware.smackx.ping.PingManager;
 import org.jxmpp.jid.BareJid;
-import org.jxmpp.jid.EntityBareJid;
-import org.jxmpp.jid.impl.JidCreate;
 import org.jxmpp.jid.parts.Localpart;
 import org.jxmpp.jid.parts.Resourcepart;
 import org.jxmpp.stringprep.XmppStringprepException;
@@ -26,7 +24,6 @@ public class XmppClient {
     private Roster roster;
     private ChatManager chatManager;
     private PingManager pingManager;
-    private ReconnectionManager reconnectionManager;
 
     public XmppClient(String domain, String user, String password) throws IOException, InterruptedException, XMPPException, SmackException {
         this.domain = domain;
