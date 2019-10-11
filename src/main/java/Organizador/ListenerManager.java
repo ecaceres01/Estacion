@@ -3,6 +3,7 @@ package Organizador;
 import Organizador.Excepciones.ChatException;
 import Organizador.Excepciones.CsvException;
 import Organizador.Excepciones.ListException;
+import Organizador.Excepciones.RosterException;
 import org.jivesoftware.smack.*;
 import org.jivesoftware.smack.chat2.Chat;
 import org.jivesoftware.smack.chat2.IncomingChatMessageListener;
@@ -11,10 +12,13 @@ import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.roster.PresenceEventListener;
 import org.jivesoftware.smack.roster.RosterListener;
 import org.jivesoftware.smack.roster.SubscribeListener;
+import org.jivesoftware.smackx.ping.PingFailedListener;
 import org.jxmpp.jid.BareJid;
 import org.jxmpp.jid.EntityBareJid;
 import org.jxmpp.jid.FullJid;
 import org.jxmpp.jid.Jid;
+import org.jxmpp.jid.impl.JidCreate;
+
 import java.io.IOException;
 import java.util.Collection;
 
@@ -177,38 +181,16 @@ public class ListenerManager {
                     }
                 }
 
-            }
-        };
-    }
-
-    static PresenceEventListener presenceEventListener() {
-        return new PresenceEventListener() {
-            @Override
-            public void presenceAvailable(FullJid address, Presence availablePresence) {
-                System.out.println("INFO: Jid " + address + " se encuentra " + availablePresence.getType());
-            }
-
-            @Override
-            public void presenceUnavailable(FullJid address, Presence presence) {
-                System.out.println("INFO: Jid " + address + " se encuentra " + presence.getType());
-                FullJid myJid = xmppClient.getConnection().getUser();
-                if (address == myJid) {
-                    System.exit(-2);
+                if (message.getBody().equalsIgnoreCase("ping")) {
+                    respuesta = new Message(message.getTo(), "pong");
+                    respuesta.setType(Message.Type.chat);
+                    try {
+                        chat.send(respuesta);
+                    } catch (Exception e) {
+                        System.out.println("ERROR: No se pudo enviar el mensaje");
+                        e.printStackTrace();
+                    }
                 }
-            }
-
-            @Override
-            public void presenceError(Jid address, Presence errorPresence) {
-
-            }
-
-            @Override
-            public void presenceSubscribed(BareJid address, Presence subscribedPresence) {
-
-            }
-
-            @Override
-            public void presenceUnsubscribed(BareJid address, Presence unsubscribedPresence) {
 
             }
         };
@@ -228,6 +210,30 @@ public class ListenerManager {
 
             @Override
             public void connectionClosed() {
+
+            }
+
+            @Override
+            public void connectionClosedOnError(Exception e) {
+                try {
+                    xmppClient.normalConnection();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                } catch (SmackException ex) {
+                    ex.printStackTrace();
+                } catch (XMPPException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        };
+    }
+
+    static PingFailedListener pingFailedListener() {
+        return new PingFailedListener() {
+            @Override
+            public void pingFailed() {
                 try {
                     xmppClient.normalConnection();
                 } catch (InterruptedException e) {
@@ -238,21 +244,6 @@ public class ListenerManager {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void connectionClosedOnError(Exception e) {
-                try {
-                    xmppClient.normalConnection();
-                } catch (SmackException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                } catch (XMPPException ex) {
-                    ex.printStackTrace();
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
                 }
             }
         };

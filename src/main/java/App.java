@@ -73,16 +73,15 @@ public class App {
         try {
             xmppClient.setRosterListener();
             xmppClient.setIncomingChatMessageListener();
-            xmppClient.setPresenceListener();
             xmppClient.setConnectionListener();
+            xmppClient.setPingFailedListener();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        while (xmppClient.getConnection().isAuthenticated()) {
+        while (true) {
 
         }
 
-        System.exit(0);
     }
 }
