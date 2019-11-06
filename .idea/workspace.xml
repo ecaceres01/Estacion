@@ -2,25 +2,23 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Estacion:jar" />
+      <artifact name="Estacion" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a385c765-c52b-415d-b6ed-4c4b02877348" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/last.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Organizador/IpAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/last.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ReadCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ReadCSV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/XmppClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/XmppClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ReadCSV.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReadCSV.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/XmppClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/XmppClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Organizador/ListenerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Organizador/ListenerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Organizador/XmppClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Organizador/XmppClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/XmppClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/XmppClient.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +51,20 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1PfFaycATHMzhDTii2xzb2JzoFK" />
   <component name="ProjectLevelVcsManager">
@@ -66,13 +76,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Cliente" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -153,7 +168,55 @@
       <workItem from="1567112127741" duration="7332000" />
       <workItem from="1567120645597" duration="1244000" />
       <workItem from="1567263910715" duration="856000" />
+      <workItem from="1567267371947" duration="511000" />
+      <workItem from="1567292558653" duration="8590000" />
+      <workItem from="1567465201899" duration="9606000" />
+      <workItem from="1567723149329" duration="223000" />
+      <workItem from="1567723652981" duration="3478000" />
+      <workItem from="1567816037838" duration="215000" />
+      <workItem from="1567816375976" duration="4000" />
+      <workItem from="1567825449694" duration="4000" />
+      <workItem from="1568243388942" duration="3448000" />
+      <workItem from="1568301904817" duration="42000" />
+      <workItem from="1568302532685" duration="535000" />
+      <workItem from="1568322426362" duration="204000" />
+      <workItem from="1568322659859" duration="170000" />
+      <workItem from="1568673412069" duration="98000" />
+      <workItem from="1568673535685" duration="7000" />
+      <workItem from="1568673575356" duration="2806000" />
+      <workItem from="1568758087252" duration="7262000" />
+      <workItem from="1569345966503" duration="94000" />
+      <workItem from="1569346329872" duration="548000" />
+      <workItem from="1569599833795" duration="12074000" />
+      <workItem from="1569840264880" duration="105000" />
+      <workItem from="1569897457396" duration="1450000" />
+      <workItem from="1569900550244" duration="80000" />
+      <workItem from="1570539052229" duration="125000" />
+      <workItem from="1570743296785" duration="1175000" />
+      <workItem from="1570747528252" duration="413000" />
+      <workItem from="1570757491880" duration="211000" />
+      <workItem from="1570826339721" duration="824000" />
+      <workItem from="1570828521035" duration="1043000" />
+      <workItem from="1571095068227" duration="777000" />
+      <workItem from="1571150273043" duration="257000" />
+      <workItem from="1571174369499" duration="916000" />
+      <workItem from="1571239115276" duration="82000" />
+      <workItem from="1571336982035" duration="118000" />
+      <workItem from="1571436242294" duration="2869000" />
+      <workItem from="1572464550525" duration="811000" />
+      <workItem from="1572778537244" duration="49000" />
+      <workItem from="1572778643451" duration="39000" />
+      <workItem from="1572961539053" duration="1607000" />
+      <workItem from="1572976697469" duration="4771000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactoring de código, primera aproximación a espera de testeo">
+      <created>1567302110024</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567302110024</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,5 +237,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Refactoring de código, primera aproximación a espera de testeo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring de código, primera aproximación a espera de testeo" />
   </component>
 </project>
