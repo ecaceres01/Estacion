@@ -8,14 +8,24 @@ import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
+import org.jivesoftware.smackx.filetransfer.FileTransfer;
+import org.jivesoftware.smackx.filetransfer.FileTransferManager;
+import org.jivesoftware.smackx.filetransfer.OutgoingFileTransfer;
 import org.jivesoftware.smackx.iqregister.AccountManager;
 import org.jivesoftware.smackx.ping.PingManager;
 import org.jxmpp.jid.BareJid;
+import org.jxmpp.jid.EntityBareJid;
+import org.jxmpp.jid.EntityFullJid;
+import org.jxmpp.jid.Jid;
+import org.jxmpp.jid.impl.JidCreate;
 import org.jxmpp.jid.parts.Localpart;
 import org.jxmpp.jid.parts.Resourcepart;
 import org.jxmpp.stringprep.XmppStringprepException;
 
+import java.io.File;
 import java.io.IOException;
+
+import static java.lang.Thread.sleep;
 
 public class XmppClient {
     private String domain, user, password;
@@ -24,6 +34,7 @@ public class XmppClient {
     private Roster roster;
     private ChatManager chatManager;
     private PingManager pingManager;
+    private FileTransferManager fileTransferManager;
 
     public XmppClient(String domain, String user, String password) throws IOException, InterruptedException, XMPPException, SmackException {
         this.domain = domain;
@@ -60,6 +71,7 @@ public class XmppClient {
         setRoster();
         setChatManager();
         setPingManager();
+        setFileTransferManager();
         System.out.println("INFO: Ingresando a servidor como usuario " + connection.getUser());
     }
 
@@ -76,7 +88,11 @@ public class XmppClient {
 
     private void setPingManager() {
         this.pingManager = PingManager.getInstanceFor(connection);
-        pingManager.setPingInterval(60);
+        pingManager.setPingInterval(30);
+    }
+
+    private void setFileTransferManager() {
+        this.fileTransferManager = FileTransferManager.getInstanceFor(connection);
     }
 
     public Roster getRoster() throws RosterException {
@@ -129,6 +145,30 @@ public class XmppClient {
 
     public void setPingFailedListener() {
         pingManager.registerPingFailedListener(ListenerManager.pingFailedListener());
+    }
+
+    public void transferFile(Jid jid) throws XmppStringprepException, SmackException, InterruptedException {
+        File file = new File(System.getProperty("user.dir") + "/log.csv");
+        EntityFullJid entityFullJid = JidCreate.entityFullFrom(jid);
+
+        OutgoingFileTransfer transfer = fileTransferManager.createOutgoingFileTransfer(entityFullJid);
+        transfer.sendFile(file, null);
+
+        int aux = 0;
+        while (!transfer.isDone()) {
+            if (transfer.getStatus().equals(FileTransfer.Status.error)) {
+                System.out.println("ERROR: " + transfer.getError());
+            } else {
+                System.out.println(transfer.getStatus());
+                System.out.println(transfer.getProgress());
+            }
+            Thread.sleep(1000);
+
+            if (aux <= 10 && transfer.getProgress() < 15) {
+                transfer.cancel();
+                break;
+            }
+        }
     }
 
 }

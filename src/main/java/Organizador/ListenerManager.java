@@ -13,13 +13,12 @@ import org.jivesoftware.smack.roster.PresenceEventListener;
 import org.jivesoftware.smack.roster.RosterListener;
 import org.jivesoftware.smack.roster.SubscribeListener;
 import org.jivesoftware.smackx.ping.PingFailedListener;
-import org.jxmpp.jid.BareJid;
-import org.jxmpp.jid.EntityBareJid;
-import org.jxmpp.jid.FullJid;
-import org.jxmpp.jid.Jid;
+import org.jxmpp.jid.*;
 import org.jxmpp.jid.impl.JidCreate;
+import org.jxmpp.stringprep.XmppStringprepException;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class ListenerManager {
@@ -142,6 +141,22 @@ public class ListenerManager {
                             e.printStackTrace();
                         }
                     }
+
+                    if (message.getBody().equalsIgnoreCase("ip")) {
+                        IpAddress ipAddress = new IpAddress();
+                        ArrayList<String> ip = ipAddress.getIp();
+
+                        respuesta = new Message(message.getTo(),
+                                "Las IPs de la estación son: " + ip
+                                );
+                        respuesta.setType(Message.Type.chat);
+                        try {
+                            chat.send(respuesta);
+                        } catch (Exception e) {
+                            System.out.println("ERROR: No se pudo enviar el mensaje");
+                            e.printStackTrace();
+                        }
+                    }
                 }
 
                 if (message.getBody().equalsIgnoreCase("datos")) {
@@ -187,6 +202,41 @@ public class ListenerManager {
                         chat.send(respuesta);
                     } catch (Exception e) {
                         System.out.println("ERROR: No se pudo enviar el mensaje");
+                        e.printStackTrace();
+                    }
+                }
+
+                if (message.getBody().equalsIgnoreCase("log")) {
+                    respuesta = new Message(message.getTo(), "enviando archivo...");
+                    respuesta.setType(Message.Type.chat);
+                    try {
+                        chat.send(respuesta);
+                        xmppClient.transferFile(message.getFrom());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (XmppStringprepException e) {
+                        e.printStackTrace();
+                    } catch (SmackException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (message.getBody().equalsIgnoreCase("json")) {
+                    File file = new File(System.getProperty("user.dir") + "/datos.json");
+                    try {
+                        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                        String string;
+                        string = bufferedReader.readLine();
+                        respuesta = new Message(message.getTo(), string);
+                        respuesta.setType(Message.Type.chat);
+                        chat.send(respuesta);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (SmackException.NotConnectedException e) {
                         e.printStackTrace();
                     }
                 }
