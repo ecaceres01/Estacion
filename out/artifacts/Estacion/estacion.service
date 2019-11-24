@@ -1,0 +1,13 @@
+[Unit]
+Description=App de estacion de monitoreo
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+WorkingDirectory=/home/pi/Estacion
+ExecStart=/home/pi/Estacion/estacion.sh
+Restart=always
+RestartSec=20s
+
+[Install]
+WantedBy=multi-user.target
