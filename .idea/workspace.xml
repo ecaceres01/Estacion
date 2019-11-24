@@ -7,18 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a385c765-c52b-415d-b6ed-4c4b02877348" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Organizador/IpAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Estacion/Estacion.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Organizador/ListenerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Organizador/ListenerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Organizador/XmppClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Organizador/XmppClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/ListenerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Organizador/XmppClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Organizador/XmppClient.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -208,6 +197,7 @@
       <workItem from="1572778643451" duration="39000" />
       <workItem from="1572961539053" duration="1607000" />
       <workItem from="1572976697469" duration="4771000" />
+      <workItem from="1574458651028" duration="2533000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring de código, primera aproximación a espera de testeo">
       <created>1567302110024</created>
